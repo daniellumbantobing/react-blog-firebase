@@ -5,12 +5,11 @@ const Home = ({isAuth}) =>{
     
     const [load, setLoad] = useState(false);
     const [dataLists, setdataLists] = useState(null)
-    const dataCollectionRef = collection(db, "posts");
    
     useEffect(() => {
         const getdatas = async () =>{
             try{
-                const data = await getDocs(dataCollectionRef); 
+                const data = await getDocs(collection(db, "posts")); 
                 let datas = data.docs.map((doc)=> ({...doc.data(), id: doc.id}));
                setdataLists(datas);
             }catch(error){
